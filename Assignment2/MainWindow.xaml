@@ -1,0 +1,66 @@
+﻿<Window x:Class="Assignment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assignment2"
+        mc:Ignorable="d"
+        Title="Truth Tables" Height="600" Width="900">    
+    <ScrollViewer>        
+        <Grid x:Name="MainGrid" Background="WhiteSmoke">            
+            <TextBlock x:Name="HeaderText" Foreground="SkyBlue" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Margin="30,20,0,0" TextWrapping="Wrap" Text="Connectives" VerticalAlignment="Top"/>        
+            <RadioButton x:Name="ANDButton" Content="AND"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 60 0 0" IsChecked="True" Click="ButtonClick"/>
+            <RadioButton x:Name="ORButton" Content="OR"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 85 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="NOTButton" Content="NOT"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 110 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="XORButton" Content="X-OR" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 135 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="NANDButton" Content="NAND" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 160 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="NORButton" Content="NOR"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 185 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="IMPButton" Content="Implication"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 210 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="BICONButton" Content="BiConditional"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 235 0 0" Click="ButtonClick"/>
+            <RadioButton x:Name="CustomButton" Content="Custom Expression"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,60,0,0" Click="Custom_Click" RenderTransformOrigin="1.062,-0.433"/>
+            <RadioButton x:Name="EqualButton" Content="Check Logical Equivalence"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,90,0,0" Click="Equal_Click"/>
+            <Button x:Name="SelectButton"  Content="View Truth Table" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="30" Margin="20 300 0 0" Click="SelectButton_Click"/>
+            <RadioButton x:Name="SimplifyButton" Content="Simplify Expression"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,120,0,0" Click="Custom_Click2"/>
+        
+            <!-- Truth Table-->
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Foreground="SkyBlue" FontSize="15" Margin="220,20,0,0" TextWrapping="Wrap" Text="Truth Table" VerticalAlignment="Top" TextAlignment="Center"/>
+            <TextBlock x:Name="ResultType" Foreground="SkyBlue" TextAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" FontSize="15" Margin="0,20,120,0" TextWrapping="Wrap" Text="Type : " VerticalAlignment="Top"/>
+            <!--Table-->
+            <TextBlock x:Name="Table0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="140,60,0,0" TextWrapping="Wrap" Text="A      B" VerticalAlignment="Top" TextAlignment="Center"/>
+       
+            <TextBlock x:Name="Table1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="140,90,0,0" TextWrapping="Wrap" Text="T      T" VerticalAlignment="Top" TextAlignment="Center"/>
+            <TextBlock x:Name="Table2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="140,110,0,0" TextWrapping="Wrap" Text="T      F" VerticalAlignment="Top" TextAlignment="Center"/>
+            <TextBlock x:Name="Table3" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="140,130,0,0" TextWrapping="Wrap" Text="F      T" VerticalAlignment="Top" TextAlignment="Center"/>
+            <TextBlock x:Name="Table4" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="140,150,0,0" TextWrapping="Wrap" Text="F      F" VerticalAlignment="Top" TextAlignment="Center"/>
+
+            <!--Values-->
+        
+            <TextBlock x:Name="ConnectiveSymbol" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="305,60,0,0" TextWrapping="Wrap" Text="A . B" VerticalAlignment="Top"/>
+            <TextBlock x:Name="Val0" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="15" Margin="305,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <TextBlock x:Name="Val1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="305,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <TextBlock x:Name="Val2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="305,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <TextBlock x:Name="Val3" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="305,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        
+            <!--NOT Table-->
+            <TextBlock x:Name="NOTTable0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="180,60,0,0" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="NOTTable1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="180,100,0,0" TextWrapping="Wrap" Text="T" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="NOTTable2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="180,130,0,0" TextWrapping="Wrap" Text="F" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="NOTTable3" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="250,60,0,0" TextWrapping="Wrap" Text="~A" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="NOTTable4" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="250,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="NOTTable5" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="250,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextAlignment="Center" Visibility="Collapsed"/>
+        
+            <!--Custom Input-->
+            <TextBox x:Name="InputBox" Visibility="Collapsed" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" TextAlignment="Center" Text="" VerticalAlignment="Top" Width="180" Margin="20 370 0 0"/>
+            <TextBlock x:Name="InputBlock" Visibility="Collapsed" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Text="Enter the Boolean expression" VerticalAlignment="Top" Margin="20 340 0 0"/>
+            <TextBox x:Name="InputBox2"  Visibility="Collapsed" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" TextAlignment="Center" Text="" VerticalAlignment="Top" Width="180" Margin="250 370 0 0"/>
+            <TextBlock x:Name="InputBlock2" Visibility="Collapsed" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Text="Enter the second Boolean expression" VerticalAlignment="Top" Margin="250 340 0 0"/>
+            <TextBlock x:Name="EquivalenceBlock" FontWeight="Bold" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" FontSize="17" Text="" VerticalAlignment="Top" Margin="250 420 0 0"/>
+            <TextBlock x:Name="InstructionsBlock" Visibility="Collapsed" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Left" FontSize="14" 
+                       Text="AND             &amp; or .&#x0A;OR                | or +&#x0A;NOT              ! or ~&#x0A;X-OR                   ^&#x0A;Implication       ->&#x0A;BiConditional &lt;->" 
+                       VerticalAlignment="Top" Margin="20 400 0 0"/>
+        
+            <!--Simplified Expression-->
+            <TextBlock x:Name="SimplifiedOutput" FontSize="15" FontWeight="Bold" Visibility="Collapsed" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" TextAlignment="Center" Text="Simplified Output" VerticalAlignment="Top" Width="180" Margin="250 370 0 0"/>
+        </Grid>        
+    </ScrollViewer>
+</Window>
